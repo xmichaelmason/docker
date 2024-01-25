@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  cuda_image:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile.cuda
+
+  llama_cpp_python:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile.llama_cpp_python
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, utility]
+    restart: always
+    ports:
+      - "5001:8080"
+    volumes:
+      - ${LOCAL_APP_DIRECTORY}:${INTERNAL_APP_DIRECTORY}
+      - ${LOCAL_MODEL_DIRECTORY}:${INTERNAL_MODEL_DIRECTORY}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    command: python3 -m llama_cpp.server --config_file llama_config.json
