@@ -1,0 +1,6 @@
+FROM alpine:latest
+
+# Install necessary dependencies
+RUN apk add chromium 
+
+# CMD [ "chromium", "--remote-debugging-port=9222", "--remote-debugging-address=0.0.0.0", "--disable-dev-shm-usage", "--no-sandbox", "--headless" ]
