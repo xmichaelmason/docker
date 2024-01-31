@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  grafana:
+    image: grafana/grafana-oss
+    restart: unless-stopped
+    environment:
+     - GF_INSTALL_PLUGINS=grafana-clock-panel
+    ports:
+     - ${GRAFANA_EXTERNAL_PORT}:3000
+    user: '0'
+    volumes:
+     - ./data:/var/lib/grafana
