@@ -1,0 +1,11 @@
+# Use the official Redis image as the base image
+FROM redis:latest
+
+# Expose the default Redis port
+EXPOSE 6379
+
+# Mount the local data directory to the container's /data directory
+VOLUME /data
+
+# Start Redis server
+CMD ["redis-server"]
