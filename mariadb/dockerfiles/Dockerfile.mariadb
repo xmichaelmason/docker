@@ -1,0 +1,14 @@
+# Use the official mariadb image as the base image
+FROM mariadb:latest
+
+# Expose port 3306
+EXPOSE 3306
+
+# Set environment variables
+ENV MYSQL_ROOT_PASSWORD=.
+ENV MYSQL_DATABASE=test_db
+ENV MYSQL_USER=sa
+ENV MYSQL_PASSWORD=.
+
+# Mount the local data directory to the container's /var/lib/mysql directory
+VOLUME /var/lib/mysql

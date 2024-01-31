@@ -1,0 +1,12 @@
+# Use the official mongo image as the base image
+FROM mongo:latest
+
+# Set environment variables
+ENV MONGO_INITDB_ROOT_USERNAME=admin
+ENV MONGO_INITDB_ROOT_PASSWORD=password
+
+# Expose port 27017
+EXPOSE 27017
+
+# Mount the local data/db directory to the container's /data/db directory
+VOLUME /data/db /data/db
