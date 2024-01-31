@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  cuda_image:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.cuda
+
+  stable_diffusion:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.stable_diffusion
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, utility]
+    restart: unless-stopped
+    ports:
+      - ${SD_EXTERNAL_PORT}:8000
+    volumes:
+      - ${SD_DIRECTORY}:${INTERNAL_APP_DIRECTORY}
+      - ${SD_IMAGE_DIRECTORY}:${INTERNAL_SD_IMAGE_DIRECTORY}
+      - ${MODEL_DIRECTORY}:${INTERNAL_SD_MODEL_DIRECTORY}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    command: uvicorn --host 0.0.0.0 --port 8000 app:app
