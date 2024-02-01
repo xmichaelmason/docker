@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  cuda_image:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.cuda
+
+  transformers:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.transformers
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu, compute, utility]
+    restart: unless-stopped
+    ports:
+      - ${TF_EXTERNAL_PORT}:8000
+    volumes:
+      - ${TF_DIRECTORY}:${INTERNAL_APP_DIRECTORY}
+      - ${MODEL_DIRECTORY}:${INTERNAL_TF_MODEL_DIRECTORY}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    command: uvicorn --host 0.0.0.0 --port 8000 app:app
