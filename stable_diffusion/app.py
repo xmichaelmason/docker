@@ -4,7 +4,6 @@ from diffusers import StableDiffusionPipeline
 import torch
 from pathlib import Path
 import logging
-from huggingface_hub import login
 import os
 
 
