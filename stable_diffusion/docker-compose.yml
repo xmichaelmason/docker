@@ -4,12 +4,12 @@ services:
   cuda_image:
     build:
       context: .
-      dockerfile: docker/Dockerfile.cuda
+      dockerfile: dockerfiles/Dockerfile.cuda
 
   stable_diffusion:
     build:
       context: .
-      dockerfile: docker/Dockerfile.stable_diffusion
+      dockerfile: dockerfiles/Dockerfile.stable_diffusion
     deploy:
       resources:
         reservations:
