@@ -1,11 +1,6 @@
 version: '3.8'
 
 services:
-  cuda_image:
-    build:
-      context: .
-      dockerfile: dockerfiles/Dockerfile.cuda
-
   stable_diffusion:
     build:
       context: .
@@ -28,4 +23,6 @@ services:
       memlock:
         soft: -1
         hard: -1
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
     command: uvicorn --host 0.0.0.0 --port 8000 app:app

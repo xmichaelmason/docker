@@ -1,0 +1,15 @@
+uvicorn
+fastapi
+
+torch 
+torchvision 
+torchaudio 
+diffusers 
+transformers 
+accelerate 
+scipy 
+safetensors 
+xformers 
+bitsandbytes
+huggingface_hub
+pydantic
