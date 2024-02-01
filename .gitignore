@@ -3,3 +3,5 @@ __pycache__/
 
 
 grafana/data/
+
+.DS_Store
