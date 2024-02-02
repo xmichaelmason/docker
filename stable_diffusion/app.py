@@ -20,10 +20,9 @@ token = os.getenv("HF_TOKEN")
 @app.post("/generate_image")
 def generate_image(request: ImageRequest):
     try:
-        pipe = StableDiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-2-1", use_safetensors=True, token=token)
-        if torch.cuda.is_available():
-            pipe.to("cuda")
-            
+        pipe = StableDiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-2-1", use_safetensors=True, token=token, device_map="auto")
+        pipe.enable_sequential_cpu_offload()
+        
         images = pipe(request.prompt).images
 
         del pipe
