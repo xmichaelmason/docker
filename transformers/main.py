@@ -73,7 +73,7 @@ conversation = Conversation()
 @app.post("/v1/chat/completions", response_model=str)
 async def chat_completions(user_input: str):
     global conversation
-    if len(conversation):
+    if len(conversation) == 0:
         system_message = "You are a helpful assistant."
         conversation.add_message({"role": "system", "content": system_message})
     conversation.add_message({"role": "user", "content": user_input})
