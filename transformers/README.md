@@ -7,4 +7,4 @@ docker compose up --build -d
 
 access at http://ipaddress:5002/docs
 
-tested with: Phi-2, llama 7b
+tested with: llama 7b
