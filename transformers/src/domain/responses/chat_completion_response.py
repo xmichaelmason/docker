@@ -20,6 +20,5 @@ class ChatCompletionResponse(BaseModel):
     object: str = "chat.completion"
     created: str = "2022-11-16T17:46:01-05:00"
     model: str = "gpt-3.5-turbo"
-    system_fingerprint: str = "123"
     choices: List[ChatCompletionChoice]
     usage: ChatCompletionUsage = ChatCompletionUsage()
