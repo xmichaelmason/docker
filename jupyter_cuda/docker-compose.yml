@@ -19,11 +19,7 @@ services:
       - ${DOCS_DIR}:/app/docs
       - ${NOTEBOOKS_DIR}:/app/notebooks
       - ${TRAINING_DIR}:/app/training
-      - ${MODELS_DIR}:${HF_CACHE_DIR}
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    environment:
-      - HF_TOKEN:${HF_TOKEN}
-    command: python3 -m notebook --ip=0.0.0.0 --port=8000 --allow-root
+      - ${MODELS_DIR}:/app/models
+      - ${EXTENSIONS_DIR}:/app/extensions
+    user: newuser
+    command: python3 -m jupyter lab --ip=0.0.0.0 --port=8000
