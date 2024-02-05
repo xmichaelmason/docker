@@ -11,7 +11,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./data/db:/data/db
+      - ~/stoage/mongodb/data/db:/data/db
 
 volumes:
   mongodb_data:

@@ -4,7 +4,7 @@ services:
   cuda_image:
     build:
       context: .
-      dockerfile: dockerfiles/Dockerfile.cuda
+      dockerfile: ../base/Dockerfile.cuda
 
   llama_cpp_python:
     build:

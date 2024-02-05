@@ -1,6 +1,11 @@
 version: '3.8'
 
 services:
+  base_cuda:
+    build:
+      context: .
+      dockerfile: ../base/Dockerfile.cuda
+      
   jupyter:
     build:
       context: .
@@ -20,6 +25,5 @@ services:
       - ${NOTEBOOKS_DIR}:/app/notebooks
       - ${TRAINING_DIR}:/app/training
       - ${MODELS_DIR}:/app/models
-      - ${EXTENSIONS_DIR}:/app/extensions
     user: newuser
     command: python3 -m jupyter lab --ip=0.0.0.0 --port=8000

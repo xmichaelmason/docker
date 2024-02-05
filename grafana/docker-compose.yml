@@ -10,4 +10,4 @@ services:
      - ${GRAFANA_EXTERNAL_PORT}:3000
     user: '0'
     volumes:
-     - ./data:/var/lib/grafana
+     - ~/storage/grafana:/var/lib/grafana
